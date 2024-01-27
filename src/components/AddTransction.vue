@@ -1,5 +1,5 @@
 <template>
-  <div class="add__transaction__container">
+  <div class="add__transaction__container flex-container">
     <p>Add Transaction</p>
     <div class="horizantal__line"></div>
     <form class="add__form">
@@ -23,8 +23,6 @@ export default {
 <style scoped>
 .add__transaction__container {
   width: 400px;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }

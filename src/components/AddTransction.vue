@@ -4,18 +4,50 @@
     <div class="horizantal__line"></div>
     <form class="add__form">
       <label for="text">Text</label>
-      <input type="text" name="text" id="text" placeholder="Enter Text" autocomplete="off" />
+      <input
+        type="text"
+        name="text"
+        id="text"
+        placeholder="Enter Text"
+        autocomplete="off"
+        v-model="addTransaction.transactionName"
+      />
       <label for="amout">Amount (negative - expense, positive + income)</label>
-      <input type="text" name="amount" id="amount" placeholder="Enter Amount" autocomplete="off" />
-      <button class="add__btn">Add Transaction</button>
+      <input
+        type="text"
+        name="amount"
+        id="amount"
+        placeholder="Enter Amount"
+        autocomplete="off"
+        v-model="addTransaction.transactionAmount"
+      />
+      <button class="add__btn" type="button" @click="onSubmitActionHandler">Add Transaction</button>
     </form>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
-  setup() {
-    return {}
+  setup(props, context) {
+    const addTransaction = ref({
+      transactionName: '',
+      transactionAmount: ''
+    })
+    function onSubmitActionHandler() {
+      const { transactionName, transactionAmount } = addTransaction.value
+      if (!(transactionName.replace(/\s/g, '') && transactionAmount.replace(/\s/g, ''))) {
+        alert('Please enter the values')
+        return
+      }
+      context.emit('add-transaction', { transactionName, transactionAmount })
+      addTransaction.value.transactionName = ''
+      addTransaction.value.transactionAmount = ''
+    }
+    return {
+      addTransaction,
+      onSubmitActionHandler
+    }
   }
 }
 </script>
@@ -56,5 +88,8 @@ input[type='text']:active {
   cursor: pointer;
   font-family: inherit;
   border-radius: 2px;
+}
+.add__btn:hover {
+  background: #7950f2;
 }
 </style>

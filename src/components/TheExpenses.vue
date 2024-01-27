@@ -2,18 +2,30 @@
   <div class="expenses__container">
     <div class="income__balance">
       <p>INCOME</p>
-      <span class="positive">+1400$</span>
+      <span class="positive">+{{ totalIncome }}$</span>
     </div>
     <div class="vertical__line"></div>
     <div class="expenses__balance">
       <p>EXPENSE</p>
-      <span class="negative">-300$</span>
+      <span class="negative">-{{ totalExpense }}$</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    totalIncome: {
+      type: Number,
+      required: true,
+      default: 0
+    },
+    totalExpense: {
+      type: Number,
+      required: true,
+      default: 0
+    }
+  },
   setup() {
     return {}
   }

@@ -1,12 +1,19 @@
 <template>
   <div class="balance__container">
     <p>YOUR BALANCE</p>
-    <span>1100$</span>
+    <span>{{ balance }}$</span>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    balance: {
+      type: Number,
+      required: true,
+      default: 0
+    }
+  },
   setup() {
     return {}
   }

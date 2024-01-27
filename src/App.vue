@@ -1,5 +1,5 @@
 <template>
-  <div class="expense__tracker__container">
+  <div class="expense__tracker__container flex-container">
     <the-header />
     <the-balance />
     <the-expenses />
@@ -32,8 +32,6 @@ export default {
 .expense__tracker__container {
   width: 1200px;
   margin: 1.5rem auto;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 1rem;
 }

@@ -1,8 +1,8 @@
 <template>
-  <div class="transaction__container">
+  <div class="transaction__container flex-container">
     <p>History</p>
     <div class="horizantal__line"></div>
-    <div class="transaction__list">
+    <div class="transaction__list flex-container">
       <div class="transaction negative__border">
         <p>Sneakers</p>
         <span>-200$</span>
@@ -28,22 +28,13 @@ export default {
 <style scoped>
 .transaction__container {
   width: 400px;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
   gap: 12px;
 }
 .transaction__list {
   width: 100%;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-}
-.horizantal__line {
-  width: 100%;
-  height: 2px;
-  background: #ced4da;
 }
 .transaction {
   width: 100%;

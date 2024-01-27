@@ -3,15 +3,19 @@
     <p>History</p>
     <div class="horizantal__line"></div>
     <div class="transaction__list flex-container">
-      <div class="transaction negative__border">
-        <p>Sneakers</p>
-        <span>-200$</span>
-        <div class="delete__transaction">&#10006;</div>
-      </div>
-      <div class="transaction positive__border">
-        <p>Paycheck</p>
-        <span>-900$</span>
-        <div class="delete__transaction">&#10006;</div>
+      <div
+        class="transaction"
+        v-for="transaction in transactions"
+        :key="transaction.id"
+        :class="
+          transaction.transactionAmount.includes('-') ? 'negative__border' : 'positive__border'
+        "
+      >
+        <p>{{ transaction.transactionName }}</p>
+        <span>{{ transaction.transactionAmount }}$</span>
+        <div class="delete__transaction" @click="onDeleteActionHandler(transaction.id)">
+          &#10006;
+        </div>
       </div>
     </div>
   </div>
@@ -19,8 +23,20 @@
 
 <script>
 export default {
-  setup() {
-    return {}
+  props: {
+    transactions: {
+      type: Array,
+      default: () => []
+    }
+  },
+  setup(props, context) {
+    function onDeleteActionHandler(id) {
+      if (!id) return
+      context.emit('on-delete-transaction', id)
+    }
+    return {
+      onDeleteActionHandler
+    }
   }
 }
 </script>
